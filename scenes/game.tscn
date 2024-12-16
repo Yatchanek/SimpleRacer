@@ -1,0 +1,342 @@
+[gd_scene load_steps=22 format=3 uid="uid://0dcw8rt3stvj"]
+
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_6l7sx"]
+[ext_resource type="Texture2D" uid="uid://0s46s1okcbgx" path="res://graphics/road.jpg" id="2_bbsaa"]
+[ext_resource type="PackedScene" uid="uid://cksfuenbowgcb" path="res://scenes/enemy_car.tscn" id="2_l2yca"]
+[ext_resource type="PackedScene" uid="uid://crp1xoh3rpbwf" path="res://scenes/goal_line.tscn" id="3_b65tu"]
+[ext_resource type="PackedScene" uid="uid://beh72dne2cc8g" path="res://scenes/boost.tscn" id="4_4fjqa"]
+[ext_resource type="PackedScene" uid="uid://1b8sqmd2awj3" path="res://scenes/car.tscn" id="4_43vb8"]
+[ext_resource type="Shader" path="res://scenes/road.gdshader" id="5_ajjbs"]
+[ext_resource type="Script" path="res://scripts/joystick.gd" id="5_gayf3"]
+[ext_resource type="Texture2D" uid="uid://5gog0ik7rgbc" path="res://graphics/joystick.png" id="6_6dt5i"]
+[ext_resource type="Texture2D" uid="uid://dxmpu1y6y8wgs" path="res://graphics/SmallHandleFilled.png" id="7_fa3vm"]
+[ext_resource type="FontFile" uid="uid://ckivgl2ik3owi" path="res://fonts/Rajdhani-Bold.ttf" id="8_3jpbl"]
+[ext_resource type="Texture2D" uid="uid://cjd08gc4icopx" path="res://graphics/semaphore.png" id="9_u1ryr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n1yw6"]
+shader = ExtResource("5_ajjbs")
+shader_parameter/dist = null
+
+[sub_resource type="LabelSettings" id="LabelSettings_n4mtx"]
+line_spacing = 0.0
+font = ExtResource("8_3jpbl")
+font_size = 72
+font_color = Color(0, 0, 0, 1)
+outline_size = 20
+outline_color = Color(1, 1, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_bdb0w"]
+font = ExtResource("8_3jpbl")
+font_size = 160
+font_color = Color(0, 0, 0, 1)
+outline_size = 35
+outline_color = Color(1, 1, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_iel13"]
+line_spacing = 0.0
+font = ExtResource("8_3jpbl")
+font_size = 72
+font_color = Color(0, 0, 0, 1)
+outline_size = 20
+outline_color = Color(1, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kfeu5"]
+size = Vector2(38, 2008)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ml23o"]
+size = Vector2(1080, 256)
+
+[sub_resource type="Animation" id="Animation_nfbrm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Semaphore:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Semaphore:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_d1l0s"]
+resource_name = "StartSequence"
+length = 4.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Semaphore:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Semaphore:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5, 2.5, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1ayx7"]
+_data = {
+"RESET": SubResource("Animation_nfbrm"),
+"StartSequence": SubResource("Animation_d1l0s")
+}
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_6l7sx")
+enemy_car_scene = ExtResource("2_l2yca")
+goal_line_scene = ExtResource("3_b65tu")
+boost_scene = ExtResource("4_4fjqa")
+
+[node name="Road" type="Sprite2D" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_n1yw6")
+position = Vector2(539, 983.52)
+texture = ExtResource("2_bbsaa")
+
+[node name="Car" parent="." instance=ExtResource("4_43vb8")]
+z_index = 2
+position = Vector2(540, 1750)
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control"]
+custom_minimum_size = Vector2(1080, 420)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 1)
+
+[node name="Joystick" type="Control" parent="CanvasLayer/Control"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -329.0
+offset_right = 150.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(150, 150)
+script = ExtResource("5_gayf3")
+
+[node name="Base" type="TextureRect" parent="CanvasLayer/Control/Joystick"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 150.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 0.75)
+pivot_offset = Vector2(150, 150)
+texture = ExtResource("6_6dt5i")
+
+[node name="Knob" type="TextureRect" parent="CanvasLayer/Control/Joystick"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 50)
+texture = ExtResource("7_fa3vm")
+stretch_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 48
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="TimeLabel" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Time left: 30.0s"
+label_settings = SubResource("LabelSettings_n4mtx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/TimeLabel"]
+visible = false
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.435294)
+
+[node name="DistLabel" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Checkpoint: 30.0s"
+label_settings = SubResource("LabelSettings_n4mtx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/DistLabel"]
+visible = false
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.435294)
+
+[node name="ExtendedPlayLabel" type="Label" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -486.0
+offset_top = -478.0
+offset_right = 487.0
+offset_bottom = -273.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Extended Play!"
+label_settings = SubResource("LabelSettings_bdb0w")
+horizontal_alignment = 1
+
+[node name="BoostLabel" type="Label" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_top = 400.0
+offset_right = 206.0
+offset_bottom = 584.0
+pivot_offset = Vector2(103, 92)
+text = "Boost
+ahead!"
+label_settings = SubResource("LabelSettings_n4mtx")
+horizontal_alignment = 1
+
+[node name="DeboostLabel" type="Label" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_top = 400.0
+offset_right = 206.0
+offset_bottom = 584.0
+pivot_offset = Vector2(103, 92)
+text = "DeBoost
+ahead!"
+label_settings = SubResource("LabelSettings_iel13")
+horizontal_alignment = 1
+
+[node name="Borders" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders"]
+position = Vector2(16, 960)
+shape = SubResource("RectangleShape2D_kfeu5")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Borders"]
+position = Vector2(1064, 960)
+shape = SubResource("RectangleShape2D_kfeu5")
+
+[node name="GoalTimer" type="Timer" parent="."]
+
+[node name="JamDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JamDetector"]
+position = Vector2(540, -128)
+shape = SubResource("RectangleShape2D_ml23o")
+
+[node name="Semaphore" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(540, 540)
+texture = ExtResource("9_u1ryr")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1ayx7")
+}
+autoplay = "StartSequence"
+
+[connection signal="got_boost" from="Car" to="." method="_on_car_got_boost"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="GoalTimer" to="." method="_on_goal_timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

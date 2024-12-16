@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://beh72dne2cc8g"]
+
+[ext_resource type="Script" path="res://scripts/boost.gd" id="1_tk4gr"]
+[ext_resource type="Texture2D" uid="uid://bqulf48r7wsgu" path="res://graphics/boost.png" id="2_yp4o7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e6hgt"]
+size = Vector2(158, 530)
+
+[node name="Boost" type="Area2D"]
+collision_layer = 32
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_tk4gr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_e6hgt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 0, 1)
+texture = ExtResource("2_yp4o7")

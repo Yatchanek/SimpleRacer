@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://crp1xoh3rpbwf"]
+
+[ext_resource type="Script" path="res://scripts/goal_line.gd" id="1_qbqq6"]
+[ext_resource type="Texture2D" uid="uid://dhmvcl5ldc6qg" path="res://graphics/yellow_line.png" id="2_yk554"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3lf8n"]
+size = Vector2(1080, 64)
+
+[node name="GoalLine" type="Area2D"]
+collision_layer = 0
+monitorable = false
+script = ExtResource("1_qbqq6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_yk554")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3lf8n")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

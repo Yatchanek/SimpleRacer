@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://d37joit3kuiin"]
+
+[ext_resource type="Script" path="res://scripts/canister.gd" id="1_guhkp"]
+[ext_resource type="Texture2D" uid="uid://sw7e8lxoc8xm" path="res://graphics/canister.png" id="2_qf5x7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_he3ju"]
+size = Vector2(120, 154)
+
+[node name="Canister" type="Area2D"]
+collision_layer = 32
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_guhkp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_he3ju")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_qf5x7")

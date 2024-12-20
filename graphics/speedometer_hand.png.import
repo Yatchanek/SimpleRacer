@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxmpu1y6y8wgs"
-path="res://.godot/imported/SmallHandleFilled.png-c6d4e343a16051f807f8601417f3f9ee.ctex"
+uid="uid://c6rf28oddgof6"
+path="res://.godot/imported/speedometer_hand.png-5bcb64677c9d9f77bb27b0b4bf635b83.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/SmallHandleFilled.png"
-dest_files=["res://.godot/imported/SmallHandleFilled.png-c6d4e343a16051f807f8601417f3f9ee.ctex"]
+source_file="res://graphics/speedometer_hand.png"
+dest_files=["res://.godot/imported/speedometer_hand.png-5bcb64677c9d9f77bb27b0b4bf635b83.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://eyax8xudfdtj"
-path="res://.godot/imported/sem_3_red.png-bab475da023ab60f38d57e7617c7dae6.ctex"
+uid="uid://d1of2v2tn3e20"
+path="res://.godot/imported/fuel_gauge_bkg.png-f62ec35ff06c720429ff78f81a5edced.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/sem_3_red.png"
-dest_files=["res://.godot/imported/sem_3_red.png-bab475da023ab60f38d57e7617c7dae6.ctex"]
+source_file="res://graphics/fuel_gauge_bkg.png"
+dest_files=["res://.godot/imported/fuel_gauge_bkg.png-f62ec35ff06c720429ff78f81a5edced.ctex"]
 
 [params]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://0dcw8rt3stvj"]
+[gd_scene load_steps=26 format=3 uid="uid://0dcw8rt3stvj"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_6l7sx"]
 [ext_resource type="Texture2D" uid="uid://0s46s1okcbgx" path="res://graphics/road.jpg" id="2_bbsaa"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://beh72dne2cc8g" path="res://scenes/boost.tscn" id="4_4fjqa"]
 [ext_resource type="PackedScene" uid="uid://1b8sqmd2awj3" path="res://scenes/car.tscn" id="4_43vb8"]
 [ext_resource type="Shader" path="res://scenes/road.gdshader" id="5_ajjbs"]
-[ext_resource type="PackedScene" uid="uid://d37joit3kuiin" path="res://scenes/canister.tscn" id="5_vowef"]
 [ext_resource type="FontFile" uid="uid://ckivgl2ik3owi" path="res://fonts/Rajdhani-Bold.ttf" id="8_3jpbl"]
 [ext_resource type="PackedScene" uid="uid://bxvm0ykwyhemy" path="res://scenes/joystick.tscn" id="8_mlo0s"]
 [ext_resource type="Script" path="res://scripts/hud.gd" id="8_n0m2a"]
@@ -17,7 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://civue2pc01il5" path="res://graphics/mini_road.jpg" id="10_l1s0d"]
 [ext_resource type="Texture2D" uid="uid://c6rf28oddgof6" path="res://graphics/speedometer_hand.png" id="10_x4dyf"]
 [ext_resource type="Texture2D" uid="uid://5x60tx01wba8" path="res://graphics/boost_indicator.png" id="12_jw5q0"]
-[ext_resource type="Texture2D" uid="uid://sw7e8lxoc8xm" path="res://graphics/canister.png" id="13_ei56i"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n1yw6"]
 shader = ExtResource("5_ajjbs")
@@ -116,7 +114,6 @@ script = ExtResource("1_6l7sx")
 enemy_car_scene = ExtResource("2_l2yca")
 goal_line_scene = ExtResource("3_b65tu")
 boost_scene = ExtResource("4_4fjqa")
-canister_scene = ExtResource("5_vowef")
 
 [node name="Road" type="Sprite2D" parent="."]
 texture_repeat = 2
@@ -229,37 +226,12 @@ horizontal_alignment = 1
 [node name="BoostIndicator" type="TextureRect" parent="HUD/Control"]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
-self_modulate = Color(1, 1, 0, 1)
 layout_mode = 0
 offset_top = 200.0
 offset_right = 250.0
 offset_bottom = 300.0
 pivot_offset = Vector2(125, 50)
 texture = ExtResource("12_jw5q0")
-stretch_mode = 5
-
-[node name="DeboostIndicator" type="TextureRect" parent="HUD/Control"]
-unique_name_in_owner = true
-modulate = Color(1, 1, 1, 0)
-self_modulate = Color(1, 0, 0, 1)
-layout_mode = 0
-offset_top = 200.0
-offset_right = 250.0
-offset_bottom = 300.0
-scale = Vector2(-1, -1)
-pivot_offset = Vector2(125, 50)
-texture = ExtResource("12_jw5q0")
-stretch_mode = 5
-
-[node name="CanisterIcon" type="TextureRect" parent="HUD/Control"]
-unique_name_in_owner = true
-modulate = Color(1, 1, 1, 0)
-layout_mode = 0
-offset_top = 200.0
-offset_right = 250.0
-offset_bottom = 300.0
-pivot_offset = Vector2(125, 82)
-texture = ExtResource("13_ei56i")
 stretch_mode = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD/Control"]

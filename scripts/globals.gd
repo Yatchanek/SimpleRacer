@@ -1,5 +1,5 @@
 extends Node
 
-var car : Area2D
+var car : PlayerCar
 var joystick : Control
 var speed_ratio : float

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dryjnb2ix5htm"
-path="res://.godot/imported/sem_2_red.png-a0ccfc88edbe86ea445902ea95308ff5.ctex"
+uid="uid://y8edsf24vohj"
+path="res://.godot/imported/joystick_knob_2.png-3381e7011a067e54801d97a9998a45d0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/sem_2_red.png"
-dest_files=["res://.godot/imported/sem_2_red.png-a0ccfc88edbe86ea445902ea95308ff5.ctex"]
+source_file="res://graphics/joystick_knob_2.png"
+dest_files=["res://.godot/imported/joystick_knob_2.png-3381e7011a067e54801d97a9998a45d0.ctex"]
 
 [params]
 

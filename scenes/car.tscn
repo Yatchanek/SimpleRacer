@@ -1,10 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://1b8sqmd2awj3"]
+[gd_scene load_steps=8 format=3 uid="uid://1b8sqmd2awj3"]
 
 [ext_resource type="Script" path="res://scripts/car.gd" id="1_47nck"]
 [ext_resource type="Texture2D" uid="uid://ci5np2314f7nj" path="res://graphics/player_car.png" id="2_6f7lq"]
+[ext_resource type="AudioStream" uid="uid://b3nha6gjjxrk4" path="res://engine_loop.ogg" id="3_at2ef"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y1jlc"]
 size = Vector2(96, 228)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_irjek"]
+atlas = ExtResource("2_6f7lq")
+region = Rect2(0, 0, 116, 253)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jpchs"]
+atlas = ExtResource("2_6f7lq")
+region = Rect2(116, 0, 116, 253)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nkbc1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_irjek")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jpchs")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Car" type="Area2D"]
 collision_mask = 50
@@ -14,8 +37,15 @@ script = ExtResource("1_47nck")
 shape = SubResource("RectangleShape2D_y1jlc")
 debug_color = Color(3.08037e-06, 0.626907, 0.825807, 0.419608)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_6f7lq")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nkbc1")
+autoplay = "default"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_at2ef")
+
+[node name="Timer" type="Timer" parent="."]
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

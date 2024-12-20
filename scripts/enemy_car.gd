@@ -23,6 +23,9 @@ var elapsed_time : float = 0.0
 
 var out_of_bonds_check_started : bool = false
 
+var turn_probability : float = 0.2
+var steer_power : int
+
 var interest : Array[float] = []
 var ray_angles : Array[float] = []
 var front_raycasts : Array = []
@@ -33,7 +36,10 @@ func _ready() -> void:
 	sprite.region_rect.position.x = 116 * randi_range(0, 4)
 	front_raycasts = $Raycasts.get_children()
 	side_raycasts = $SideRaycasts.get_children()
-	max_speed = Globals.car.speed * randf_range(0.7, 0.9)
+	if Globals.car.max_speed <= Globals.car.NORMAL_MAX_SPEED:
+		max_speed = Globals.car.speed * randf_range(0.7, 0.9)
+	else:
+		max_speed = min(Globals.car.speed, 3.25) * randf_range(0.7, 0.9)
 	speed = max_speed
 	target_speed = max_speed
 	interest.resize(5)
@@ -42,6 +48,10 @@ func _ready() -> void:
 		ray_angles.append(ray.rotation)
 	timer.start()
 	turn_timer.start(1.0)
+
+func initialize(current_stage : int):
+	turn_probability = min(0.2 + 0.1 * (current_stage - 1), 0.5)
+	steer_power = min(192 + 32 * (current_stage - 1), 320)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -103,8 +113,8 @@ func _on_timer_timeout() -> void:
 
 func _on_turn_timer_timeout() -> void:
 	if !has_changed_lane:
-		if randf() < 0.5:
-			h_steering = 256 * pow(-1, randi() % 2)
+		if randf() < turn_probability:
+			h_steering = steer_power * pow(-1, randi() % 2)
 			has_changed_lane = true
 			turn_timer.start(randf_range(1.0, 2.5))
 			

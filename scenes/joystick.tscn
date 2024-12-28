@@ -1,8 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxvm0ykwyhemy"]
+[gd_scene load_steps=5 format=3 uid="uid://bxvm0ykwyhemy"]
 
 [ext_resource type="Script" path="res://scripts/joystick.gd" id="1_gf2wy"]
 [ext_resource type="Texture2D" uid="uid://c6q3meevs6rmw" path="res://graphics/joystick_base_3.png" id="2_2l30f"]
 [ext_resource type="Texture2D" uid="uid://b1fhcwnch8xl7" path="res://graphics/joystick_knob_3.png" id="3_1ke2s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5duhd"]
+draw_center = false
+corner_radius_top_left = 150
+corner_radius_top_right = 150
+corner_radius_bottom_right = 150
+corner_radius_bottom_left = 150
+shadow_color = Color(1, 1, 1, 0.294118)
+shadow_size = 16
 
 [node name="Joystick" type="Control"]
 custom_minimum_size = Vector2(300, 300)
@@ -11,6 +20,15 @@ anchors_preset = 0
 offset_right = 160.0
 offset_bottom = 160.0
 script = ExtResource("1_gf2wy")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5duhd")
 
 [node name="Base" type="TextureRect" parent="."]
 layout_mode = 1

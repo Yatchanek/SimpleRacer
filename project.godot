@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+SceneChanger="*res://scenes/scene_changer.tscn"
 Globals="*res://scenes/globals.tscn"
 
 [display]
@@ -26,6 +27,7 @@ window/size/viewport_height=2400
 window/size/window_width_override=360
 window/size/window_height_override=800
 window/stretch/mode="canvas_items"
+window/handheld/orientation=1
 
 [input_devices]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cksfuenbowgcb"]
 
 [ext_resource type="Script" path="res://scripts/enemy_car.gd" id="1_j5m5w"]
-[ext_resource type="Texture2D" uid="uid://daa26o6rgnp40" path="res://graphics/cars.png" id="2_ve1t6"]
+[ext_resource type="Texture2D" uid="uid://daa26o6rgnp40" path="res://graphics/cars_by_looneybits.png" id="2_ve1t6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5lyiv"]
 size = Vector2(89, 237)
@@ -60,42 +60,44 @@ collision_mask = 2
 collide_with_areas = true
 collide_with_bodies = false
 
-[node name="SideRaycasts" type="Node2D" parent="."]
+[node name="RightRaycasts" type="Node2D" parent="."]
 
-[node name="RightRaycast" type="RayCast2D" parent="SideRaycasts" groups=["SideRaycasts"]]
+[node name="RightRaycast" type="RayCast2D" parent="RightRaycasts" groups=["SideRaycasts"]]
 target_position = Vector2(90, 0)
 collision_mask = 18
 collide_with_areas = true
 collide_with_bodies = false
 
-[node name="RightRaycast2" type="RayCast2D" parent="SideRaycasts" groups=["SideRaycasts"]]
+[node name="RightRaycast2" type="RayCast2D" parent="RightRaycasts" groups=["SideRaycasts"]]
 position = Vector2(0, -70)
 target_position = Vector2(90, 0)
 collision_mask = 18
 collide_with_areas = true
 collide_with_bodies = false
 
-[node name="RightRaycast3" type="RayCast2D" parent="SideRaycasts" groups=["SideRaycasts"]]
+[node name="RightRaycast3" type="RayCast2D" parent="RightRaycasts" groups=["SideRaycasts"]]
 position = Vector2(0, 100)
 target_position = Vector2(90, 0)
 collision_mask = 18
 collide_with_areas = true
 collide_with_bodies = false
 
-[node name="LeftRaycast" type="RayCast2D" parent="SideRaycasts" groups=["SideRaycasts"]]
+[node name="LeftRaycasts" type="Node2D" parent="."]
+
+[node name="LeftRaycast" type="RayCast2D" parent="LeftRaycasts" groups=["SideRaycasts"]]
 target_position = Vector2(-90, 0)
 collision_mask = 18
 collide_with_areas = true
 collide_with_bodies = false
 
-[node name="LeftRaycast2" type="RayCast2D" parent="SideRaycasts" groups=["SideRaycasts"]]
+[node name="LeftRaycast2" type="RayCast2D" parent="LeftRaycasts" groups=["SideRaycasts"]]
 position = Vector2(0, 100)
 target_position = Vector2(-90, 0)
 collision_mask = 18
 collide_with_areas = true
 collide_with_bodies = false
 
-[node name="LeftRaycast3" type="RayCast2D" parent="SideRaycasts" groups=["SideRaycasts"]]
+[node name="LeftRaycast3" type="RayCast2D" parent="LeftRaycasts" groups=["SideRaycasts"]]
 position = Vector2(0, -70)
 target_position = Vector2(-90, 0)
 collision_mask = 18

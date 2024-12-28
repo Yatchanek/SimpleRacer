@@ -1,0 +1,991 @@
+[gd_scene load_steps=30 format=3 uid="uid://c3adxlpjmpm7y"]
+
+[ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_pifey"]
+[ext_resource type="Shader" path="res://shaders/logo.gdshader" id="1_xbitv"]
+[ext_resource type="Texture2D" uid="uid://ct6rucdaqwgaw" path="res://graphics/unnamed.jpg" id="2_7ptoy"]
+[ext_resource type="Texture2D" uid="uid://0s46s1okcbgx" path="res://graphics/road.jpg" id="2_ft5dd"]
+[ext_resource type="PackedScene" uid="uid://bj2ot6oujr8bu" path="res://scenes/title_screen_car.tscn" id="2_tdv22"]
+[ext_resource type="FontFile" uid="uid://j2kwitllkglg" path="res://fonts/not_jam_ui_15.ttf" id="3_v4kvj"]
+[ext_resource type="Texture2D" uid="uid://bsaonbihr1rbq" path="res://graphics/start_game.png" id="5_b4vpf"]
+[ext_resource type="Texture2D" uid="uid://chcj1lwo47s2o" path="res://graphics/options.png" id="8_cemyt"]
+[ext_resource type="Texture2D" uid="uid://oji6so4ue02c" path="res://graphics/minus.png" id="9_1602y"]
+[ext_resource type="Script" path="res://scripts/custom_gauge.gd" id="10_vvs8q"]
+[ext_resource type="Texture2D" uid="uid://c6asi4dr6qtmq" path="res://graphics/plus.png" id="11_budx1"]
+[ext_resource type="Texture2D" uid="uid://d3gatjt0gc7il" path="res://graphics/cross.png" id="12_7ta5i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0ylne"]
+shader = ExtResource("1_xbitv")
+shader_parameter/threshold = 0.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_bpdr4"]
+font = ExtResource("3_v4kvj")
+font_size = 128
+font_color = Color(0, 0, 0, 1)
+outline_size = 32
+outline_color = Color(1, 1, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_40bgy"]
+font = ExtResource("3_v4kvj")
+font_size = 192
+font_color = Color(0, 0, 0, 1)
+outline_size = 48
+outline_color = Color(1, 1, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7arrc"]
+size = Vector2(950, 110)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gb2wh"]
+size = Vector2(640, 110)
+
+[sub_resource type="Animation" id="Animation_yov5c"]
+resource_name = "TitleAnimation"
+length = 7.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 2, 2.5, 3, 3.4, 4, 4.5, 4.8),
+"transitions": PackedFloat32Array(1, -2, -2, -2, -2, -2, -2, -2, -2),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/Label:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["yatchan's
+after five
+gamedev", "presents"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VBoxContainer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Simple:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 5.7, 5.9),
+"transitions": PackedFloat32Array(1, 1, 2),
+"update": 0,
+"values": [Vector2(-799.999, 450), Vector2(-799.999, 450), Vector2(202, 450)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Racer:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 5.9, 6.1),
+"transitions": PackedFloat32Array(1, 1, 2),
+"update": 0,
+"values": [Vector2(1250, 650), Vector2(1250, 650), Vector2(234, 650)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("StartGameButton:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 6.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("StartGameButton:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 6.2, 6.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.5, 5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"show_logo"
+}, {
+"args": [],
+"method": &"hide_logo"
+}]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Road:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 5.5, 6.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("OptionsButton:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 6.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("OptionsButton:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 6.2, 6.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_eg4ld"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/Label:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["yatchan's
+after five
+gamedev"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VBoxContainer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Simple:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-800, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Racer:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1250, 500)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("StartGameButton:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("StartGameButton:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Road:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("OptionsButton:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("OptionsButton:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("OptionsContainer:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_1tm1e"]
+resource_name = "OpenOptions"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OptionsContainer:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(2, 2),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wy0eq"]
+_data = {
+"OpenOptions": SubResource("Animation_1tm1e"),
+"RESET": SubResource("Animation_eg4ld"),
+"TitleAnimation": SubResource("Animation_yov5c")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4gyn7"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="LabelSettings" id="LabelSettings_hs2vf"]
+font = ExtResource("3_v4kvj")
+font_size = 128
+font_color = Color(0, 0, 0, 1)
+outline_size = 24
+outline_color = Color(1, 1, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vxw3s"]
+font = ExtResource("3_v4kvj")
+font_size = 64
+font_color = Color(0, 0, 0, 1)
+outline_size = 16
+outline_color = Color(1, 1, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pvpso"]
+size = Vector2(128, 96)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sd4s7"]
+size = Vector2(128, 96)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s2qpd"]
+bg_color = Color(0.1, 0.0916667, 0.09, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.8, 0.8, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1kpg"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ckpya"]
+size = Vector2(90, 90)
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pifey")
+car_scene = ExtResource("2_tdv22")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0392157, 0.0392157, 0.0392157, 1)
+
+[node name="Road" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ft5dd")
+
+[node name="Logo" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_0ylne")
+custom_minimum_size = Vector2(600, 600)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -955.0
+offset_right = 300.0
+offset_bottom = -355.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(300, 300)
+texture = ExtResource("2_7ptoy")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+text = "yatchan's
+after five
+gamedev"
+label_settings = SubResource("LabelSettings_bpdr4")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Simple" type="Label" parent="."]
+z_index = 1
+layout_mode = 2
+offset_left = -800.0
+offset_right = -124.0
+offset_bottom = 193.0
+size_flags_horizontal = 4
+text = "simple
+"
+label_settings = SubResource("LabelSettings_40bgy")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Racer" type="Label" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 710.0
+offset_top = -700.0
+offset_right = 1322.0
+offset_bottom = -507.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "racer"
+label_settings = SubResource("LabelSettings_40bgy")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="StartGameButton" type="TouchScreenButton" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+z_index = 1
+position = Vector2(65, 1400)
+texture_normal = ExtResource("5_b4vpf")
+texture_pressed = ExtResource("5_b4vpf")
+shape = SubResource("RectangleShape2D_7arrc")
+
+[node name="OptionsButton" type="TouchScreenButton" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+position = Vector2(220, 1600)
+texture_normal = ExtResource("8_cemyt")
+texture_pressed = ExtResource("8_cemyt")
+shape = SubResource("RectangleShape2D_gb2wh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wy0eq")
+}
+
+[node name="SpawnTimer" type="Timer" parent="."]
+
+[node name="OptionsContainer" type="PanelContainer" parent="."]
+z_index = 2
+custom_minimum_size = Vector2(900, 1600)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(450, 800)
+theme_override_styles/panel = SubResource("StyleBoxFlat_4gyn7")
+
+[node name="MarginContainer" type="MarginContainer" parent="OptionsContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 128
+
+[node name="Label" type="Label" parent="OptionsContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "options"
+label_settings = SubResource("LabelSettings_hs2vf")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 112
+
+[node name="MasterVolume" type="VBoxContainer" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/MasterVolume"]
+layout_mode = 2
+text = "master volume"
+label_settings = SubResource("LabelSettings_vxw3s")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/MasterVolume"]
+layout_mode = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/MasterVolume/HBoxContainer"]
+custom_minimum_size = Vector2(86, 64)
+layout_mode = 2
+
+[node name="MasterVolumeDown" type="TouchScreenButton" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/MasterVolume/HBoxContainer/MarginContainer"]
+scale = Vector2(0.8, 0.65)
+texture_normal = ExtResource("9_1602y")
+texture_pressed = ExtResource("9_1602y")
+shape = SubResource("RectangleShape2D_pvpso")
+
+[node name="MasterVolumeGauge" type="HBoxContainer" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/MasterVolume/HBoxContainer" node_paths=PackedStringArray("decrease_button", "increase_button")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+alignment = 1
+script = ExtResource("10_vvs8q")
+decrease_button = NodePath("../MarginContainer/MasterVolumeDown")
+increase_button = NodePath("../MarginContainer2/MasterVolumeUp")
+step = 0.1
+
+[node name="ColorRect" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/MasterVolume/HBoxContainer/MasterVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0, 0.862745, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/MasterVolume/HBoxContainer/MasterVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0, 0.862745, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/MasterVolume/HBoxContainer/MasterVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0, 0.862745, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/MasterVolume/HBoxContainer/MasterVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0, 0.862745, 0, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/MasterVolume/HBoxContainer/MasterVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0.862745, 0.862745, 0, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/MasterVolume/HBoxContainer/MasterVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0.862745, 0.862745, 0, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/MasterVolume/HBoxContainer/MasterVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0.862745, 0.862745, 0, 1)
+
+[node name="ColorRect8" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/MasterVolume/HBoxContainer/MasterVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0.862745, 0.862745, 0, 1)
+
+[node name="ColorRect9" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/MasterVolume/HBoxContainer/MasterVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0.862745, 0, 0, 1)
+
+[node name="ColorRect10" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/MasterVolume/HBoxContainer/MasterVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0.862745, 0, 0, 1)
+
+[node name="MarginContainer2" type="MarginContainer" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/MasterVolume/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="MasterVolumeUp" type="TouchScreenButton" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/MasterVolume/HBoxContainer/MarginContainer2"]
+scale = Vector2(0.8, 0.65)
+texture_normal = ExtResource("11_budx1")
+texture_pressed = ExtResource("11_budx1")
+shape = SubResource("RectangleShape2D_sd4s7")
+
+[node name="EffectsVolume" type="VBoxContainer" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/EffectsVolume"]
+layout_mode = 2
+text = "effects volume"
+label_settings = SubResource("LabelSettings_vxw3s")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/EffectsVolume"]
+layout_mode = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/EffectsVolume/HBoxContainer"]
+custom_minimum_size = Vector2(86, 64)
+layout_mode = 2
+
+[node name="EffectsVolumeDown" type="TouchScreenButton" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/EffectsVolume/HBoxContainer/MarginContainer"]
+scale = Vector2(0.8, 0.65)
+texture_normal = ExtResource("9_1602y")
+texture_pressed = ExtResource("9_1602y")
+shape = SubResource("RectangleShape2D_pvpso")
+
+[node name="EffectsVolumeGauge" type="HBoxContainer" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/EffectsVolume/HBoxContainer" node_paths=PackedStringArray("decrease_button", "increase_button")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+alignment = 1
+script = ExtResource("10_vvs8q")
+decrease_button = NodePath("../MarginContainer/EffectsVolumeDown")
+increase_button = NodePath("../MarginContainer2/EffectsVolumeUp")
+step = 0.1
+
+[node name="ColorRect" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/EffectsVolume/HBoxContainer/EffectsVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0, 0.862745, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/EffectsVolume/HBoxContainer/EffectsVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0, 0.862745, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/EffectsVolume/HBoxContainer/EffectsVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0, 0.862745, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/EffectsVolume/HBoxContainer/EffectsVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0, 0.862745, 0, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/EffectsVolume/HBoxContainer/EffectsVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0.862745, 0.862745, 0, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/EffectsVolume/HBoxContainer/EffectsVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0.862745, 0.862745, 0, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/EffectsVolume/HBoxContainer/EffectsVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0.862745, 0.862745, 0, 1)
+
+[node name="ColorRect8" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/EffectsVolume/HBoxContainer/EffectsVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0.862745, 0.862745, 0, 1)
+
+[node name="ColorRect9" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/EffectsVolume/HBoxContainer/EffectsVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0.862745, 0, 0, 1)
+
+[node name="ColorRect10" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/EffectsVolume/HBoxContainer/EffectsVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0.862745, 0, 0, 1)
+
+[node name="MarginContainer2" type="MarginContainer" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/EffectsVolume/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="EffectsVolumeUp" type="TouchScreenButton" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/EffectsVolume/HBoxContainer/MarginContainer2"]
+scale = Vector2(0.8, 0.65)
+texture_normal = ExtResource("11_budx1")
+texture_pressed = ExtResource("11_budx1")
+shape = SubResource("RectangleShape2D_sd4s7")
+
+[node name="EngineVolume" type="VBoxContainer" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/EngineVolume"]
+layout_mode = 2
+text = "master volume"
+label_settings = SubResource("LabelSettings_vxw3s")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/EngineVolume"]
+layout_mode = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/EngineVolume/HBoxContainer"]
+custom_minimum_size = Vector2(86, 64)
+layout_mode = 2
+
+[node name="EngineVolumeDown" type="TouchScreenButton" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/EngineVolume/HBoxContainer/MarginContainer"]
+scale = Vector2(0.8, 0.65)
+texture_normal = ExtResource("9_1602y")
+texture_pressed = ExtResource("9_1602y")
+shape = SubResource("RectangleShape2D_pvpso")
+
+[node name="EngineVolumeGauge" type="HBoxContainer" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/EngineVolume/HBoxContainer" node_paths=PackedStringArray("decrease_button", "increase_button")]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+alignment = 1
+script = ExtResource("10_vvs8q")
+decrease_button = NodePath("../MarginContainer/EngineVolumeDown")
+increase_button = NodePath("../MarginContainer2/EngineVolumeUp")
+step = 0.1
+
+[node name="ColorRect" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/EngineVolume/HBoxContainer/EngineVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0, 0.862745, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/EngineVolume/HBoxContainer/EngineVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0, 0.862745, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/EngineVolume/HBoxContainer/EngineVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0, 0.862745, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/EngineVolume/HBoxContainer/EngineVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0, 0.862745, 0, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/EngineVolume/HBoxContainer/EngineVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0.862745, 0.862745, 0, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/EngineVolume/HBoxContainer/EngineVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0.862745, 0.862745, 0, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/EngineVolume/HBoxContainer/EngineVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0.862745, 0.862745, 0, 1)
+
+[node name="ColorRect8" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/EngineVolume/HBoxContainer/EngineVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0.862745, 0.862745, 0, 1)
+
+[node name="ColorRect9" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/EngineVolume/HBoxContainer/EngineVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0.862745, 0, 0, 1)
+
+[node name="ColorRect10" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/EngineVolume/HBoxContainer/EngineVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0.862745, 0, 0, 1)
+
+[node name="MarginContainer2" type="MarginContainer" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/EngineVolume/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="EngineVolumeUp" type="TouchScreenButton" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/EngineVolume/HBoxContainer/MarginContainer2"]
+scale = Vector2(0.8, 0.65)
+texture_normal = ExtResource("11_budx1")
+texture_pressed = ExtResource("11_budx1")
+shape = SubResource("RectangleShape2D_sd4s7")
+
+[node name="MusicVolume" type="VBoxContainer" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/MusicVolume"]
+layout_mode = 2
+text = "master volume"
+label_settings = SubResource("LabelSettings_vxw3s")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/MusicVolume"]
+layout_mode = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/MusicVolume/HBoxContainer"]
+custom_minimum_size = Vector2(86, 64)
+layout_mode = 2
+
+[node name="MusicVolumeDown" type="TouchScreenButton" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/MusicVolume/HBoxContainer/MarginContainer"]
+scale = Vector2(0.8, 0.65)
+texture_normal = ExtResource("9_1602y")
+texture_pressed = ExtResource("9_1602y")
+shape = SubResource("RectangleShape2D_pvpso")
+
+[node name="MusicVolumeGauge" type="HBoxContainer" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/MusicVolume/HBoxContainer" node_paths=PackedStringArray("decrease_button", "increase_button")]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+alignment = 1
+script = ExtResource("10_vvs8q")
+decrease_button = NodePath("../MarginContainer/MusicVolumeDown")
+increase_button = NodePath("../MarginContainer2/MusicVolumeUp")
+step = 0.1
+
+[node name="ColorRect" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/MusicVolume/HBoxContainer/MusicVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0, 0.862745, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/MusicVolume/HBoxContainer/MusicVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0, 0.862745, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/MusicVolume/HBoxContainer/MusicVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0, 0.862745, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/MusicVolume/HBoxContainer/MusicVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0, 0.862745, 0, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/MusicVolume/HBoxContainer/MusicVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0.862745, 0.862745, 0, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/MusicVolume/HBoxContainer/MusicVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0.862745, 0.862745, 0, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/MusicVolume/HBoxContainer/MusicVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0.862745, 0.862745, 0, 1)
+
+[node name="ColorRect8" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/MusicVolume/HBoxContainer/MusicVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0.862745, 0.862745, 0, 1)
+
+[node name="ColorRect9" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/MusicVolume/HBoxContainer/MusicVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0.862745, 0, 0, 1)
+
+[node name="ColorRect10" type="ColorRect" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/MusicVolume/HBoxContainer/MusicVolumeGauge"]
+custom_minimum_size = Vector2(48, 64)
+layout_mode = 2
+color = Color(0.862745, 0, 0, 1)
+
+[node name="MarginContainer2" type="MarginContainer" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/MusicVolume/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="MusicVolumeUp" type="TouchScreenButton" parent="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/MusicVolume/HBoxContainer/MarginContainer2"]
+scale = Vector2(0.8, 0.65)
+texture_normal = ExtResource("11_budx1")
+texture_pressed = ExtResource("11_budx1")
+shape = SubResource("RectangleShape2D_sd4s7")
+
+[node name="LeftHandedMode" type="HBoxContainer" parent="OptionsContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="OptionsContainer/MarginContainer/VBoxContainer/LeftHandedMode"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "left handed mode"
+label_settings = SubResource("LabelSettings_vxw3s")
+uppercase = true
+
+[node name="PanelContainer" type="PanelContainer" parent="OptionsContainer/MarginContainer/VBoxContainer/LeftHandedMode"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_s2qpd")
+
+[node name="MarginContainer" type="MarginContainer" parent="OptionsContainer/MarginContainer/VBoxContainer/LeftHandedMode/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="LeftHandedModeCheck" type="TextureRect" parent="OptionsContainer/MarginContainer/VBoxContainer/LeftHandedMode/PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 0, 1)
+layout_mode = 2
+texture = ExtResource("12_7ta5i")
+expand_mode = 1
+
+[node name="LeftHandedModeCheckButton" type="TouchScreenButton" parent="OptionsContainer/MarginContainer/VBoxContainer/LeftHandedMode/PanelContainer/MarginContainer"]
+position = Vector2(28, 28)
+shape = SubResource("RectangleShape2D_v1kpg")
+
+[node name="CloseOptions" type="TouchScreenButton" parent="OptionsContainer/MarginContainer"]
+position = Vector2(781, 0)
+scale = Vector2(1, 1)
+texture_normal = ExtResource("12_7ta5i")
+texture_pressed = ExtResource("12_7ta5i")
+shape = SubResource("RectangleShape2D_ckpya")
+
+[connection signal="pressed" from="StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="value_changed" from="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/MasterVolume/HBoxContainer/MasterVolumeGauge" to="." method="_on_master_volume_gauge_value_changed"]
+[connection signal="value_changed" from="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/EffectsVolume/HBoxContainer/EffectsVolumeGauge" to="." method="_on_effects_volume_gauge_value_changed"]
+[connection signal="value_changed" from="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/EngineVolume/HBoxContainer/EngineVolumeGauge" to="." method="_on_engine_volume_gauge_value_changed"]
+[connection signal="value_changed" from="OptionsContainer/MarginContainer/VBoxContainer/VBoxContainer/MusicVolume/HBoxContainer/MusicVolumeGauge" to="." method="_on_music_volume_gauge_value_changed"]
+[connection signal="released" from="OptionsContainer/MarginContainer/VBoxContainer/LeftHandedMode/PanelContainer/MarginContainer/LeftHandedModeCheckButton" to="." method="_on_left_handed_mode_check_button_released"]
+[connection signal="pressed" from="OptionsContainer/MarginContainer/CloseOptions" to="." method="_on_close_options_pressed"]

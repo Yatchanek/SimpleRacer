@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://daa26o6rgnp40"
-path="res://.godot/imported/cars.png-c9fb20bc35e1020e76866b79c1773e2b.ctex"
+uid="uid://cgig3f343pu6s"
+path="res://.godot/imported/speedometer_bkg_by_khanoyanabraham_at_gmail.com.png-b3572213f4e802cac55c03561172159a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/cars.png"
-dest_files=["res://.godot/imported/cars.png-c9fb20bc35e1020e76866b79c1773e2b.ctex"]
+source_file="res://graphics/speedometer_bkg_by_khanoyanabraham_at_gmail.com.png"
+dest_files=["res://.godot/imported/speedometer_bkg_by_khanoyanabraham_at_gmail.com.png-b3572213f4e802cac55c03561172159a.ctex"]
 
 [params]
 

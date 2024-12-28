@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://1b8sqmd2awj3"]
+[gd_scene load_steps=9 format=3 uid="uid://1b8sqmd2awj3"]
 
 [ext_resource type="Script" path="res://scripts/car.gd" id="1_47nck"]
 [ext_resource type="Texture2D" uid="uid://ci5np2314f7nj" path="res://graphics/player_car.png" id="2_6f7lq"]
-[ext_resource type="AudioStream" uid="uid://b3nha6gjjxrk4" path="res://engine_loop.ogg" id="3_at2ef"]
+[ext_resource type="AudioStream" uid="uid://8folnrb6k50n" path="res://sounds/engine_loop_by_nox_sound_design.mp3" id="3_xfsjm"]
+[ext_resource type="AudioStream" uid="uid://d2i35sqnyfur4" path="res://sounds/impact_sound_by_kenney.ogg" id="4_sni4y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y1jlc"]
 size = Vector2(96, 228)
@@ -26,7 +27,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [node name="Car" type="Area2D"]
@@ -37,12 +38,17 @@ script = ExtResource("1_47nck")
 shape = SubResource("RectangleShape2D_y1jlc")
 debug_color = Color(3.08037e-06, 0.626907, 0.825807, 0.419608)
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_nkbc1")
 autoplay = "default"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_at2ef")
+[node name="EngineSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_xfsjm")
+max_polyphony = 2
+bus = &"Engine"
+
+[node name="ImpactSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_sni4y")
 
 [node name="Timer" type="Timer" parent="."]
 

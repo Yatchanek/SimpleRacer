@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://0dcw8rt3stvj"]
+[gd_scene load_steps=38 format=3 uid="uid://0dcw8rt3stvj"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_6l7sx"]
 [ext_resource type="Texture2D" uid="uid://0s46s1okcbgx" path="res://graphics/road.jpg" id="2_bbsaa"]
@@ -6,9 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://crp1xoh3rpbwf" path="res://scenes/goal_line.tscn" id="3_b65tu"]
 [ext_resource type="PackedScene" uid="uid://beh72dne2cc8g" path="res://scenes/boost.tscn" id="4_4fjqa"]
 [ext_resource type="PackedScene" uid="uid://1b8sqmd2awj3" path="res://scenes/car.tscn" id="4_43vb8"]
-[ext_resource type="Shader" path="res://scenes/road.gdshader" id="5_ajjbs"]
+[ext_resource type="Shader" path="res://shaders/road.gdshader" id="5_ajjbs"]
 [ext_resource type="PackedScene" uid="uid://d37joit3kuiin" path="res://scenes/canister.tscn" id="5_vowef"]
-[ext_resource type="FontFile" uid="uid://ckivgl2ik3owi" path="res://fonts/Rajdhani-Bold.ttf" id="8_3jpbl"]
 [ext_resource type="PackedScene" uid="uid://bxvm0ykwyhemy" path="res://scenes/joystick.tscn" id="8_mlo0s"]
 [ext_resource type="Script" path="res://scripts/hud.gd" id="8_n0m2a"]
 [ext_resource type="Texture2D" uid="uid://bftyxf0ko0n21" path="res://graphics/mini_car.png" id="9_7rrap"]
@@ -16,29 +15,96 @@
 [ext_resource type="Texture2D" uid="uid://cjd08gc4icopx" path="res://graphics/semaphore.png" id="9_u1ryr"]
 [ext_resource type="Texture2D" uid="uid://civue2pc01il5" path="res://graphics/mini_road.jpg" id="10_l1s0d"]
 [ext_resource type="Texture2D" uid="uid://c6rf28oddgof6" path="res://graphics/speedometer_hand.png" id="10_x4dyf"]
+[ext_resource type="FontFile" uid="uid://j2kwitllkglg" path="res://fonts/not_jam_ui_15.ttf" id="12_1yxce"]
 [ext_resource type="Texture2D" uid="uid://5x60tx01wba8" path="res://graphics/boost_indicator.png" id="12_jw5q0"]
+[ext_resource type="FontFile" uid="uid://tbd8sl2jdnyg" path="res://fonts/not_jam_ui_12.ttf" id="13_17ll3"]
 [ext_resource type="Texture2D" uid="uid://sw7e8lxoc8xm" path="res://graphics/canister.png" id="13_ei56i"]
+[ext_resource type="AudioStream" uid="uid://fu5esugs5gdk" path="res://sounds/game_over_by_kenney.ogg" id="20_a4bio"]
+[ext_resource type="AudioStream" uid="uid://te0cklal5kcw" path="res://sounds/checkpoint_reached_by_kenney.ogg" id="21_yx0f6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n1yw6"]
 shader = ExtResource("5_ajjbs")
 shader_parameter/dist = null
 
-[sub_resource type="LabelSettings" id="LabelSettings_n4mtx"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ichmp"]
+bg_color = Color(0.0383972, 0.0383972, 0.0383971, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tkper"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0.0196078, 0.0196078, 0.0196078, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(1, 1, 1, 0.294118)
+shadow_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_pn1uf"]
 line_spacing = 0.0
-font = ExtResource("8_3jpbl")
-font_size = 96
+font = ExtResource("12_1yxce")
+font_size = 50
 font_color = Color(0, 0, 0, 1)
-outline_size = 20
+outline_size = 16
 outline_color = Color(1, 1, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l7ilt"]
+draw_center = false
+corner_radius_top_left = 150
+corner_radius_top_right = 150
+corner_radius_bottom_right = 150
+corner_radius_bottom_left = 150
+shadow_color = Color(1, 1, 1, 0.294118)
+shadow_size = 16
+
+[sub_resource type="LabelSettings" id="LabelSettings_ye4n3"]
+font = ExtResource("12_1yxce")
+font_size = 56
+
+[sub_resource type="LabelSettings" id="LabelSettings_oepd3"]
+line_spacing = 0.0
+font = ExtResource("12_1yxce")
+font_size = 40
+font_color = Color(1, 0, 0, 1)
+outline_size = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lenkx"]
+bg_color = Color(0.0383972, 0.0383972, 0.0383971, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_11y6t"]
 texture = ExtResource("10_l1s0d")
 expand_margin_top = 20.0
 expand_margin_bottom = 20.0
 
+[sub_resource type="LabelSettings" id="LabelSettings_n4mtx"]
+line_spacing = 0.0
+font = ExtResource("12_1yxce")
+font_size = 86
+font_color = Color(0, 0, 0, 1)
+outline_size = 20
+outline_color = Color(1, 1, 0, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_bdb0w"]
-font = ExtResource("8_3jpbl")
-font_size = 160
+font = ExtResource("13_17ll3")
+font_size = 128
 font_color = Color(0, 0, 0, 1)
 outline_size = 35
 outline_color = Color(1, 1, 0, 1)
@@ -128,14 +194,21 @@ texture = ExtResource("2_bbsaa")
 z_index = 2
 position = Vector2(540, 1750)
 
-[node name="Timer" type="Timer" parent="."]
+[node name="CarSpawnTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="GoalTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="PowerUpSpawnTimer" type="Timer" parent="."]
+wait_time = 0.5
 
 [node name="HUD" type="CanvasLayer" parent="."]
 layer = 5
 script = ExtResource("8_n0m2a")
 
 [node name="Control" type="Control" parent="HUD"]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -143,7 +216,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="HUD/Control"]
+[node name="ColorRect" type="PanelContainer" parent="HUD/Control"]
 custom_minimum_size = Vector2(1080, 420)
 layout_mode = 1
 anchors_preset = 7
@@ -151,40 +224,178 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -540.0
+offset_top = -420.0
+offset_right = 540.0
 grow_horizontal = 2
 grow_vertical = 0
-color = Color(0, 0, 0, 1)
+theme_override_styles/panel = SubResource("StyleBoxFlat_ichmp")
 
-[node name="ColorRect2" type="ColorRect" parent="HUD/Control"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Control/ColorRect"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 92
+
+[node name="PanelContainer2" type="PanelContainer" parent="HUD/Control/ColorRect/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_tkper")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Control/ColorRect/VBoxContainer/PanelContainer2"]
+layout_mode = 2
+
+[node name="BestDistance" type="Label" parent="HUD/Control/ColorRect/VBoxContainer/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "BEST"
+label_settings = SubResource("LabelSettings_pn1uf")
+horizontal_alignment = 1
+
+[node name="BestDistanceLabel" type="Label" parent="HUD/Control/ColorRect/VBoxContainer/PanelContainer2/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(239, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "0	"
+label_settings = SubResource("LabelSettings_pn1uf")
+horizontal_alignment = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="HUD/Control/ColorRect/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_tkper")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Control/ColorRect/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Distance" type="Label" parent="HUD/Control/ColorRect/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "DISTANCE"
+label_settings = SubResource("LabelSettings_pn1uf")
+horizontal_alignment = 1
+
+[node name="DistanceLabel" type="Label" parent="HUD/Control/ColorRect/VBoxContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(239, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "0	"
+label_settings = SubResource("LabelSettings_pn1uf")
+horizontal_alignment = 2
+
+[node name="Dashboard" type="HBoxContainer" parent="HUD/Control/ColorRect"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 320
+alignment = 1
+
+[node name="FuelGaugeContainer" type="PanelContainer" parent="HUD/Control/ColorRect/Dashboard"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_l7ilt")
+
+[node name="FuelGauge" type="TextureRect" parent="HUD/Control/ColorRect/Dashboard/FuelGaugeContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("9_bay1n")
+expand_mode = 1
+
+[node name="E" type="Label" parent="HUD/Control/ColorRect/Dashboard/FuelGaugeContainer/FuelGauge"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 226.0
+offset_right = 159.0
+offset_bottom = 283.0
+text = "E"
+label_settings = SubResource("LabelSettings_ye4n3")
+
+[node name="F" type="Label" parent="HUD/Control/ColorRect/Dashboard/FuelGaugeContainer/FuelGauge"]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 133.0
+offset_right = 281.0
+offset_bottom = 190.0
+text = "F"
+label_settings = SubResource("LabelSettings_ye4n3")
+
+[node name="Hand" type="TextureRect" parent="HUD/Control/ColorRect/Dashboard/FuelGaugeContainer/FuelGauge"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -25.0
+offset_top = 135.0
+offset_right = 25.0
+offset_bottom = 275.0
+grow_horizontal = 2
+rotation = 4.71239
+pivot_offset = Vector2(25, 15)
+texture = ExtResource("10_x4dyf")
+expand_mode = 1
+
+[node name="LowFuelLabel" type="Label" parent="HUD/Control/ColorRect/Dashboard/FuelGaugeContainer/FuelGauge"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 24.0
+offset_top = -44.0
+offset_right = 288.0
+offset_bottom = -1.0
+text = "LOW  FUEL"
+label_settings = SubResource("LabelSettings_oepd3")
+horizontal_alignment = 1
+
+[node name="Joystick" parent="HUD/Control/ColorRect/Dashboard" instance=ExtResource("8_mlo0s")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="ColorRect2" type="PanelContainer" parent="HUD/Control"]
 custom_minimum_size = Vector2(1080, 0)
 layout_mode = 1
 offset_right = 1080.0
 offset_bottom = 181.0
-color = Color(0, 0, 0, 1)
+theme_override_styles/panel = SubResource("StyleBoxFlat_lenkx")
 
 [node name="MarginContainer" type="MarginContainer" parent="HUD/Control/ColorRect2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = -25.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 48
-theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 48
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 16
 
-[node name="TimeLabel" type="Label" parent="HUD/Control/ColorRect2/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Control/ColorRect2/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="DistSlider" type="HSlider" parent="HUD/Control/ColorRect2/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+theme_override_icons/grabber = ExtResource("9_7rrap")
+theme_override_styles/slider = SubResource("StyleBoxTexture_11y6t")
+max_value = 1.0
+step = 0.01
+tick_count = 2
+
+[node name="TimeLabel" type="Label" parent="HUD/Control/ColorRect2/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
-size_flags_vertical = 0
 text = "30.0s"
 label_settings = SubResource("LabelSettings_n4mtx")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ColorRect" type="ColorRect" parent="HUD/Control/ColorRect2/MarginContainer/TimeLabel"]
+[node name="ColorRect" type="ColorRect" parent="HUD/Control/ColorRect2/MarginContainer/HBoxContainer/TimeLabel"]
 visible = false
 show_behind_parent = true
 layout_mode = 1
@@ -195,18 +406,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.435294)
 
-[node name="DistSlider" type="HSlider" parent="HUD/Control/ColorRect2/MarginContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(700, 0)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-theme_override_icons/grabber = ExtResource("9_7rrap")
-theme_override_styles/slider = SubResource("StyleBoxTexture_11y6t")
-max_value = 1.0
-step = 0.01
-tick_count = 2
-
 [node name="ExtendedPlayLabel" type="Label" parent="HUD/Control"]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
@@ -216,15 +415,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -486.0
-offset_top = -478.0
-offset_right = 487.0
-offset_bottom = -273.0
+offset_left = -669.0
+offset_top = -543.0
+offset_right = 670.0
+offset_bottom = -241.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Extended Play!"
+text = "extended
+play!"
 label_settings = SubResource("LabelSettings_bdb0w")
 horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
 
 [node name="BoostIndicator" type="TextureRect" parent="HUD/Control"]
 unique_name_in_owner = true
@@ -255,51 +457,13 @@ stretch_mode = 5
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
-offset_top = 200.0
-offset_right = 250.0
-offset_bottom = 300.0
-pivot_offset = Vector2(125, 82)
+offset_top = 180.0
+offset_right = 128.0
+offset_bottom = 344.0
+scale = Vector2(0.75, 0.75)
+pivot_offset = Vector2(64, 82)
 texture = ExtResource("13_ei56i")
 stretch_mode = 5
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Control"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -414.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/separation = 256
-alignment = 1
-
-[node name="Speedometer" type="TextureRect" parent="HUD/Control/HBoxContainer"]
-custom_minimum_size = Vector2(300, 300)
-layout_mode = 2
-size_flags_vertical = 4
-texture = ExtResource("9_bay1n")
-expand_mode = 1
-
-[node name="Hand" type="TextureRect" parent="HUD/Control/HBoxContainer/Speedometer"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -25.0
-offset_top = 135.0
-offset_right = 25.0
-offset_bottom = 275.0
-grow_horizontal = 2
-rotation = 4.71239
-pivot_offset = Vector2(25, 15)
-texture = ExtResource("10_x4dyf")
-expand_mode = 1
-
-[node name="Joystick" parent="HUD/Control/HBoxContainer" instance=ExtResource("8_mlo0s")]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 4
 
 [node name="Borders" type="Area2D" parent="."]
 collision_layer = 16
@@ -311,8 +475,6 @@ shape = SubResource("RectangleShape2D_kfeu5")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Borders"]
 position = Vector2(1064, 960)
 shape = SubResource("RectangleShape2D_kfeu5")
-
-[node name="GoalTimer" type="Timer" parent="."]
 
 [node name="JamDetector" type="Area2D" parent="."]
 collision_layer = 0
@@ -333,9 +495,21 @@ hframes = 4
 libraries = {
 "": SubResource("AnimationLibrary_1ayx7")
 }
-autoplay = "StartSequence"
 
+[node name="Sounds" type="Node" parent="."]
+
+[node name="GameOver" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("20_a4bio")
+
+[node name="ExtendedPlay" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("21_yx0f6")
+
+[connection signal="checkpoint_reached" from="Car" to="." method="_on_car_checkpoint_reached"]
+[connection signal="enough_fuel" from="Car" to="." method="_on_car_enough_fuel"]
+[connection signal="game_over" from="Car" to="." method="_on_car_game_over"]
 [connection signal="got_boost" from="Car" to="." method="_on_car_got_boost"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="has_low_fuel" from="Car" to="." method="_on_car_has_low_fuel"]
+[connection signal="timeout" from="CarSpawnTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="GoalTimer" to="." method="_on_goal_timer_timeout"]
+[connection signal="timeout" from="PowerUpSpawnTimer" to="." method="_on_power_up_spawn_timer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgig3f343pu6s"
-path="res://.godot/imported/speedometer_bkg.png-821e9d097e872909643ceb9af7a6d296.ctex"
+uid="uid://d3gatjt0gc7il"
+path="res://.godot/imported/cross.png-de83286be58899b868c7d030113d9a3e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/speedometer_bkg.png"
-dest_files=["res://.godot/imported/speedometer_bkg.png-821e9d097e872909643ceb9af7a6d296.ctex"]
+source_file="res://graphics/cross.png"
+dest_files=["res://.godot/imported/cross.png-de83286be58899b868c7d030113d9a3e.ctex"]
 
 [params]
 

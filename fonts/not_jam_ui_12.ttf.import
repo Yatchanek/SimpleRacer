@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://ckivgl2ik3owi"
-path="res://.godot/imported/Rajdhani-Bold.ttf-e3bf5d49af0b71f346eb0c47f5e896c4.fontdata"
+uid="uid://tbd8sl2jdnyg"
+path="res://.godot/imported/not_jam_ui_12.ttf-75394bb6c61a673ae6d263db4d3d7ba0.fontdata"
 
 [deps]
 
-source_file="res://fonts/Rajdhani-Bold.ttf"
-dest_files=["res://.godot/imported/Rajdhani-Bold.ttf-e3bf5d49af0b71f346eb0c47f5e896c4.fontdata"]
+source_file="res://fonts/not_jam_ui_12.ttf"
+dest_files=["res://.godot/imported/not_jam_ui_12.ttf-75394bb6c61a673ae6d263db4d3d7ba0.fontdata"]
 
 [params]
 

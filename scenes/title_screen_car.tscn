@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bj2ot6oujr8bu"]
+
+[ext_resource type="Texture2D" uid="uid://daa26o6rgnp40" path="res://graphics/cars_by_looneybits.png" id="1_28rej"]
+[ext_resource type="Script" path="res://scripts/title_screen_car.gd" id="2_xwxkl"]
+
+[node name="TitleScreenCar" type="Sprite2D"]
+texture = ExtResource("1_28rej")
+region_enabled = true
+region_rect = Rect2(0, 0, 116, 253)
+script = ExtResource("2_xwxkl")

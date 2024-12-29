@@ -20,7 +20,7 @@ class_name HUD
 var low_fuel_tween : Tween
 
 func _ready() -> void:
-	if Globals.left_handed_mode:
+	if Settings.left_handed_mode:
 		dashboard.move_child(joystick, 0)
 
 func update_best_distance(value : float):
@@ -62,6 +62,7 @@ func show_game_over_message():
 	extended_play_label.text = "Game Over!"
 	extended_play_label.modulate.a = 1.0
 	await get_tree().create_timer(2.0).timeout
+	MusicManager.fade_out()
 	SceneChanger.change_scene("res://scenes/title_screen.tscn")
 
 func show_low_fuel_warning():

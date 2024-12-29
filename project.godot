@@ -11,19 +11,22 @@ config_version=5
 [application]
 
 config/name="Simple Racer"
-run/main_scene="res://scenes/game.tscn"
+run/main_scene="res://scenes/title_screen.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
+Settings="*res://scenes/settings.tscn"
 SceneChanger="*res://scenes/scene_changer.tscn"
+MusicManager="*res://scenes/music_manager.tscn"
 Globals="*res://scenes/globals.tscn"
 
 [display]
 
 window/size/viewport_width=1080
 window/size/viewport_height=2400
+window/size/mode=4
 window/size/window_width_override=360
 window/size/window_height_override=800
 window/stretch/mode="canvas_items"

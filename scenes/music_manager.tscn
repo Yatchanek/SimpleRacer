@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://bent682qeca8a"]
+
+[ext_resource type="Script" path="res://scripts/music_manager.gd" id="1_we3qf"]
+[ext_resource type="AudioStream" uid="uid://iehpxmd8x36o" path="res://music/title_music_by_minto_dog.ogg" id="2_6p2sp"]
+[ext_resource type="AudioStream" uid="uid://bn0lec5qkctsh" path="res://music/cool_highway_by_minto_dog.ogg" id="3_d5ulo"]
+[ext_resource type="AudioStream" uid="uid://s60cwnku63n1" path="res://music/hot_roadway_by_minto_dog.ogg" id="4_0il0g"]
+
+[node name="MusicManager" type="Node"]
+script = ExtResource("1_we3qf")
+tracks = Array[AudioStream]([ExtResource("2_6p2sp"), ExtResource("3_d5ulo"), ExtResource("4_0il0g")])
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Channel1" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+
+[node name="Channel2" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

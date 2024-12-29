@@ -6,11 +6,12 @@ class_name CustomGauge
 
 @export var step : float
 
-signal value_changed(value : float)
+signal value_changed(value : int, step : float)
 
 
 var num_steps : int
 var current_value : int = 4
+var is_initialized : bool = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -23,6 +24,7 @@ func _ready() -> void:
 	num_steps = get_child_count()
 	setup_colors()
 	update()
+	is_initialized = true
 
 func setup_colors():
 	var hue_step : float = (100.0 / 360.0) / (num_steps - 1)
@@ -38,13 +40,14 @@ func update():
 	if current_value > 0:	
 		for i in range(0, current_value):
 			get_child(i).modulate.a = 1.0
+	
+	if is_initialized:
+		value_changed.emit(current_value, step)
 
 func _on_increase_pressed():
-	current_value = clampi(current_value + 1, 0, num_steps)
-	value_changed.emit(current_value * step)
+	current_value = clampi(current_value + 1, 0, num_steps)	
 	update()
 	
 func _on_decrease_pressed():
 	current_value = clampi(current_value - 1, 0, num_steps)
-	value_changed.emit(current_value * step)
 	update()

@@ -9,6 +9,8 @@ extends Node2D
 @onready var joystick: Control = %Joystick
 @onready var game_over_sound: AudioStreamPlayer = $Sounds/GameOver
 @onready var extended_play_sound: AudioStreamPlayer = $Sounds/ExtendedPlay
+@onready var beep_low: AudioStreamPlayer = $Sounds/BeepLow
+@onready var beep_high: AudioStreamPlayer = $Sounds/BeepHigh
 
 @onready var jam_detector: Area2D = $JamDetector
 @onready var hud: HUD = $HUD
@@ -142,6 +144,12 @@ func get_spawn_offset() -> int:
 		
 	return position_offset
 
+func play_low_beep():
+	beep_low.play()
+	
+func play_high_beep():
+	beep_high.play()
+
 func _on_enemy_deleted():
 	enemy_count -= 1
 	spawn_car()
@@ -180,10 +188,10 @@ func _on_power_up_spawn_timer_timeout() -> void:
 		return
 	
 	var current_time = Time.get_ticks_msec()
-	if (current_time - last_boost_in > 10000 and distance_to_goal - current_dist > 4 and randf() < 0.25) or current_time - last_boost_in > 15000:
+	if (current_time - last_boost_in > 8000 and distance_to_goal - current_dist > 4 and randf() < 0.25) or current_time - last_boost_in > 11000:
 		spawn_boost(0)
 		last_boost_in = current_time
-	elif current_time - last_deboost_in > 15000 and distance_to_goal - current_dist > 4 and randf() < 0.25:
+	elif current_time - last_deboost_in > 11000 and distance_to_goal - current_dist > 4 and randf() < 0.25:
 		spawn_boost(1)
 		last_deboost_in = current_time
 	
@@ -198,10 +206,14 @@ func _on_goal_timer_timeout() -> void:
 
 
 func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
+	MusicManager.play_track(randi_range(MusicManager.Music.TRACK_1, MusicManager.Music.TRACK_2))
 	set_process(true)
 	car.start()
 	next_spawn_dist = randf_range(min_spawn_dist_interval, max_spawn_dist_interval)
 	#car_spawn_timer.start(2.0)
+	last_boost_in = Time.get_ticks_msec()
+	last_deboost_in = last_boost_in
+	last_canister_in = last_boost_in
 	power_up_spawn_timer.start()
 	goal_timer.start(ceil((distance_to_goal / car.NORMAL_MAX_SPEED) * 1.25))
 	
@@ -229,4 +241,5 @@ func _on_car_game_over() -> void:
 		f.store_float(Globals.best_distance)
 
 func _on_scene_changed():
+	
 	animation_player.play("StartSequence")

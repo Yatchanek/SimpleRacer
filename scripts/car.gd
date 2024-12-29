@@ -3,6 +3,8 @@ class_name PlayerCar
 
 @onready var engine_sound: AudioStreamPlayer = $EngineSound
 @onready var impact_sound: AudioStreamPlayer = $ImpactSound
+@onready var get_fuel_sound: AudioStreamPlayer = $GetFuelSound
+
 @onready var sprite: AnimatedSprite2D = $Sprite
 
 @onready var timer: Timer = $Timer
@@ -131,6 +133,8 @@ func _on_area_entered(area: Area2D) -> void:
 			max_speed = DEBOOST_MAX_SPEED
 			got_deboost.emit()
 	elif area is Canister:
+		area.queue_free()
+		get_fuel_sound.play()
 		fuel = clampf(fuel + MAX_FUEL * 0.5, 10, MAX_FUEL)
 		if out_of_fuel:
 			out_of_fuel = false
@@ -141,6 +145,7 @@ func _on_area_entered(area: Area2D) -> void:
 		if time_up:
 			time_up = false
 		checkpoint_reached.emit()
+		
 	else:	
 		max_speed = EDGE_MAX_SPEED
 		on_edge = true
@@ -153,8 +158,7 @@ func _on_area_exited(area: Area2D) -> void:
 			timer.start(BOOST_DURATION)
 		else:
 			deboosted = false
-	elif area is Canister:
-		area.queue_free()
+
 	else:
 		max_speed = 2.5
 		max_vert_acceleration = 0.75

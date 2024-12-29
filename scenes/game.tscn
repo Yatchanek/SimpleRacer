@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://0dcw8rt3stvj"]
+[gd_scene load_steps=40 format=3 uid="uid://0dcw8rt3stvj"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_6l7sx"]
 [ext_resource type="Texture2D" uid="uid://0s46s1okcbgx" path="res://graphics/road.jpg" id="2_bbsaa"]
@@ -20,7 +20,9 @@
 [ext_resource type="FontFile" uid="uid://tbd8sl2jdnyg" path="res://fonts/not_jam_ui_12.ttf" id="13_17ll3"]
 [ext_resource type="Texture2D" uid="uid://sw7e8lxoc8xm" path="res://graphics/canister.png" id="13_ei56i"]
 [ext_resource type="AudioStream" uid="uid://fu5esugs5gdk" path="res://sounds/game_over_by_kenney.ogg" id="20_a4bio"]
-[ext_resource type="AudioStream" uid="uid://te0cklal5kcw" path="res://sounds/checkpoint_reached_by_kenney.ogg" id="21_yx0f6"]
+[ext_resource type="AudioStream" uid="uid://celb2uw8dlo0h" path="res://sounds/extended_play_by_kenney.ogg" id="21_l5vv7"]
+[ext_resource type="AudioStream" uid="uid://n3mcd513ey7k" path="res://sounds/beep_low_by_kenney.ogg" id="22_dae2v"]
+[ext_resource type="AudioStream" uid="uid://b4bjah14x2nt7" path="res://sounds/beep_high_by_kenney.ogg" id="23_8n4a1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n1yw6"]
 shader = ExtResource("5_ajjbs")
@@ -169,6 +171,29 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5, 1.5, 2.5, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"play_low_beep"
+}, {
+"args": [],
+"method": &"play_low_beep"
+}, {
+"args": [],
+"method": &"play_low_beep"
+}, {
+"args": [],
+"method": &"play_high_beep"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1ayx7"]
@@ -500,9 +525,19 @@ libraries = {
 
 [node name="GameOver" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("20_a4bio")
+bus = &"Effects"
 
 [node name="ExtendedPlay" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("21_yx0f6")
+stream = ExtResource("21_l5vv7")
+bus = &"Effects"
+
+[node name="BeepLow" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("22_dae2v")
+bus = &"Effects"
+
+[node name="BeepHigh" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("23_8n4a1")
+bus = &"Effects"
 
 [connection signal="checkpoint_reached" from="Car" to="." method="_on_car_checkpoint_reached"]
 [connection signal="enough_fuel" from="Car" to="." method="_on_car_enough_fuel"]

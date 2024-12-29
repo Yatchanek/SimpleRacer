@@ -95,7 +95,7 @@ func _physics_process(delta: float) -> void:
 			h_steering *= -1				
 	
 	
-	sprite.rotation_degrees = lerp_angle(sprite.rotation_degrees, 5 * (avoidance + h_steering) / 384, 0.15)
+	sprite.rotation_degrees = 5 * (avoidance + h_steering) / 384
 	collision_shape.rotation_degrees = sprite.rotation_degrees
 	
 	position.x = clampf(position.x + (h_steering + avoidance) * delta, 80.0, 1000.0)

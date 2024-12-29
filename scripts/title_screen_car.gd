@@ -35,6 +35,6 @@ func _process(delta: float) -> void:
 	speed = move_toward(speed, target_speed, 0.0175 * target_speed)
 	position.y -= speed * delta
 	position.x = clampf(position.x + turn_direction * turn_force * delta, 100, 980)
-	rotation_degrees = lerp_angle(rotation_degrees, 10 * turn_direction, 0.15)
+	rotation_degrees = 10 * turn_direction
 	if position.y < -130:
 		queue_free()
